@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cek Khodam Online</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+        h1 {
+            margin-bottom: 10px;
+            font-size: 24px;
+            color: #333;
+        }
+        h2 {
+            margin-bottom: 20px;
+            font-size: 18px;
+            color: #666;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+        button {
+            padding: 12px 25px;
+            background-color: #ff6b6b;
+            color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #ff4757;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Cek khodam gratis tanpa antri</h2>
+        <h1>Cek Khodam Online</h1>
+        <h3>by Fikri</h3>
+        <input type="text" id="nama" placeholder="Masukkan nama Anda" oninput="resetCheck()">
+        <button id="cekButton" onclick="cekKhodam()">Cek Khodam</button>
+        <div id="result" class="result"></div>
+    </div>
+
+    <script>
+        const khodamList = [
+            "Belut Listrik",
+            "Kembang Goyang",
+            "Tuyul Gondrong",
+            "Manusia Silver",
+            "Haland",
+            "Biji Salak",
+            "Bu Sarmini",
+            "Pak Ranggi",
+            "Bayu",
+            "Biawak Hamil",
+            "Pak Berlilana",
+            "Pak Tarwoto"
+        ];
+        let clicked = false;
+
+        function cekKhodam() {
+            if (clicked) {
+                document.getElementById('result').innerText = "Uiwss pisan ae, sahan maruk blokkk!!!";
+                return;
+            }
+
+            const nama = document.getElementById('nama').value.trim();
+            if (nama === "") {
+                alert("TULIS NAMAMU COOOOK!!!!");
+                return;
+            }
+
+            const randomIndex = Math.floor(Math.random() * khodamList.length);
+            const khodam = khodamList[randomIndex];
+            document.getElementById('result').innerText = `Nama: ${nama}\nKhodam Anda: ${khodam}`;
+            clicked = true;
+            document.getElementById('cekButton').disabled = true;
+        }
+
+        function resetCheck() {
+            const nama = document.getElementById('nama').value.trim();
+            if (nama === "") {
+                document.getElementById('result').innerText = "";
+                return;
+            }
+
+            clicked = false;
+            document.getElementById('cekButton').disabled = false;
+            document.getElementById('result').innerText = "";
+        }
+    </script>
+</body>
+</html>
